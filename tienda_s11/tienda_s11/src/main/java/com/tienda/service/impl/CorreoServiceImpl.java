@@ -11,23 +11,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class CorreoServiceImpl implements CorreoService {
 
-    @Autowired
+     @Autowired
     private JavaMailSender mailSender;
-
+ 
     @Override
-      public void enviarCorreoHtml(
-              String para, 
-              String asunto, 
-              String contenidoHtml) 
-              throws MessagingException {
-          
+    public void enviarCorreoHtml(String para, String asunto, String contenidoHtml) throws MessagingException {
+ 
         MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper 
-                = new MimeMessageHelper(message, 
+        MimeMessageHelper helper
+                = new MimeMessageHelper(message,
                         true);
         helper.setTo(para);
         helper.setSubject(asunto);
-        helper.setText(contenidoHtml,true);
+        helper.setText(contenidoHtml, true);
         mailSender.send(message);
+ 
+  
     }
 }
